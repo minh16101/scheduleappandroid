@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+<!--    common-->
+    <color name="text_common_color">#000000</color>
+<!--    calendar-->
 </resources>
