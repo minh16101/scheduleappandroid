@@ -3,5 +3,7 @@
 
     <!--    common-->
     <color name="text_common_color">#FFFFFF</color>
+    <color name="calendar_background_color">#0C0C0C</color>
+
     <!--    calendar-->
 </resources>

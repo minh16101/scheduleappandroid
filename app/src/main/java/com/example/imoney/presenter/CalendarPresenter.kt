@@ -5,10 +5,13 @@ import java.util.Date
 
 class CalendarPresenter {
     val listDates = mutableListOf<Date>()
-    fun getDateFromMonthAndYear(month: String, year: String): List<Date> {
+    private var selectedDay = DateUntils.getToday()
+    fun getDateFromMonthAndYear(month: String, year: String, checkOnlyYear: Boolean): List<Date> {
+        listDates.clear()
         val monthInt = convertMonthToInt(month)
         try {
-            val yearInt = year.toInt()
+            var yearInt = year.toInt()
+            if(checkOnlyYear) yearInt++
             listDates.addAll(DateUntils.getDateOfMonth(monthInt, yearInt))
         } catch (error: NumberFormatException){
 
@@ -31,5 +34,10 @@ class CalendarPresenter {
             "November" -> return 11
         }
         return 12
+    }
+
+    fun onSelectedDay(pos: Int) {
+        //list date always has pos date because the calendar currently show has pos and we just have chosen the date in current calendar
+        selectedDay = listDates[pos]
     }
 }

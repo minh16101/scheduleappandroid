@@ -1,8 +1,14 @@
 package com.example.imoney.untils
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
+
+
 object DateUntils {
     fun getDateOfMonth(month: Int, year: Int): List<Date>{
         val listDates = mutableListOf<Date>()
@@ -48,10 +54,10 @@ object DateUntils {
 
         return listPreDates
     }
-    private fun getNameOfDate(date: Date): Int{
+    private fun getNameOfDate(date: Date): Int {
         val simpleDateFormat: SimpleDateFormat = SimpleDateFormat("EEEE")
         val nameOfDate = simpleDateFormat.format(date)
-        when(nameOfDate){
+        when (nameOfDate) {
             "Monday" -> return 0
             "Tuesday" -> return 1
             "Wednesday" -> return 2
@@ -61,5 +67,14 @@ object DateUntils {
         }
         return 6
     }
+    public fun getToday(): Date{
+        return Calendar.getInstance().time
+    }
+
+
+
+
+
+
 }
 

@@ -8,7 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+
+
+
 <!--    common-->
     <color name="text_common_color">#000000</color>
+    <color name="calendar_background_color">#FFFFFF</color>
+    <color name="color_blue_in_calendar">#2196F3</color>
 <!--    calendar-->
 </resources>
