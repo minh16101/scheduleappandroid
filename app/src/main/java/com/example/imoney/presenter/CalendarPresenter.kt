@@ -1,43 +1,53 @@
 package com.example.imoney.presenter
 
 import com.example.imoney.untils.DateUntils
+import java.util.Calendar
 import java.util.Date
 
 class CalendarPresenter {
     val listDates = mutableListOf<Date>()
+    var currentMonth = 0
+    var currentYear = 0
     private var selectedDay = DateUntils.getToday()
-    fun getDateFromMonthAndYear(month: String, year: String, checkOnlyYear: Boolean): List<Date> {
+    fun getDateFromMonthAndYear(monthInt: Int, yearInt: Int, checkOnlyYear: Boolean): List<Date> {
         listDates.clear()
-        val monthInt = convertMonthToInt(month)
         try {
-            var yearInt = year.toInt()
-            if(checkOnlyYear) yearInt++
-            listDates.addAll(DateUntils.getDateOfMonth(monthInt, yearInt))
-        } catch (error: NumberFormatException){
+            var year = yearInt
+            if (checkOnlyYear) year++
+            listDates.addAll(DateUntils.getDateOfMonth(monthInt, year))
+        } catch (error: NumberFormatException) {
 
         }
         return listDates
     }
 
+    fun setStartTimeForCalendar() {
+        val today = DateUntils.getToday()
+        val month = today.get(Calendar.MONTH)
+        val year = today.get(Calendar.YEAR)
+        currentMonth = month
+        currentYear = year
+    }
+
     private fun convertMonthToInt(month: String): Int {
         when (month) {
-            "January" -> return 1
-            "February" -> return 2
-            "March" -> return 3
-            "April" -> return 4
-            "May" -> return 5
-            "June" -> return 6
-            "July" -> return 7
-            "August" -> return 8
-            "September" -> return 9
-            "October" -> return 10
-            "November" -> return 11
+            "January" -> return 0
+            "February" -> return 1
+            "March" -> return 2
+            "April" -> return 3
+            "May" -> return 4
+            "June" -> return 5
+            "July" -> return 6
+            "August" -> return 7
+            "September" -> return 8
+            "October" -> return 9
+            "November" -> return 10
         }
-        return 12
+        return 11
     }
 
     fun onSelectedDay(pos: Int) {
         //list date always has pos date because the calendar currently show has pos and we just have chosen the date in current calendar
-        selectedDay = listDates[pos]
+        selectedDay.time = listDates[pos]
     }
 }

@@ -16,6 +16,7 @@ import com.example.imoney.R
 import com.example.imoney.adapter.CalendarAdapter
 import com.example.imoney.presenter.CalendarPresenter
 import com.example.imoney.untils.DateUntils
+import java.util.Calendar
 
 open class CalendarFragment : Fragment(), ICalendarView {
     private val mPresenter: CalendarPresenter = CalendarPresenter()
@@ -29,6 +30,8 @@ open class CalendarFragment : Fragment(), ICalendarView {
     private lateinit var btnExitCalendar: Button
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        mPresenter.setStartTimeForCalendar()
+        mPresenter.getDateFromMonthAndYear(mPresenter.currentMonth, mPresenter.currentYear, false)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,23 +66,23 @@ open class CalendarFragment : Fragment(), ICalendarView {
         //set listener
         buttonPreMonth.setOnClickListener {
             mPresenter.getDateFromMonthAndYear(
-                monthTextView.text.toString(),
-                yearTextView.text.toString(),
+                mPresenter.currentMonth,
+                mPresenter.currentYear,
                 false
             )
         }
         buttonNextMonth.setOnClickListener {
             mPresenter.getDateFromMonthAndYear(
-                monthTextView.text.toString(),
-                yearTextView.text.toString(),
+                mPresenter.currentMonth,
+                mPresenter.currentYear,
                 false
             )
         }
         buttonNextYear.setOnClickListener {
 
             mPresenter.getDateFromMonthAndYear(
-                monthTextView.text.toString(),
-                yearTextView.text.toString(),
+                mPresenter.currentMonth,
+                mPresenter.currentYear,
                 true
             )
         }

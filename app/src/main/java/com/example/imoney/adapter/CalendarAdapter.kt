@@ -11,6 +11,7 @@ import com.example.imoney.R
 import com.example.imoney.fragment.CalendarFragment
 import com.example.imoney.fragment.ICalendarView
 import com.example.imoney.untils.DateUntils
+import java.util.Calendar
 import java.util.Date
 
 class CalendarAdapter(mContext: Context?, listDates: List<Date>, mView: ICalendarView) :
@@ -53,11 +54,17 @@ class CalendarAdapter(mContext: Context?, listDates: List<Date>, mView: ICalenda
 
     private fun checkCurrentDay(pos: Int) {
         val today = DateUntils.getToday()
-        if (today == listDates[pos]) {
+        val todayCalendar = Calendar.getInstance()
+        todayCalendar.time = today
+        val posCalendar = Calendar.getInstance()
+        posCalendar.time = listDates[pos]
+        if (todayCalendar.get(Calendar.DAY_OF_MONTH) == posCalendar.get(Calendar.DAY_OF_MONTH)
+            && todayCalendar.get(Calendar.MONTH) == posCalendar.get(Calendar.MONTH)
+            && todayCalendar.get(Calendar.YEAR) == posCalendar.get(Calendar.YEAR)) {
             mContext?.resources?.let {
                 it?.getColor(R.color.white)?.let { it1 -> mTextViewDay.setTextColor(it1) }
             }
-            mTextViewDay.setBackgroundColor(R.drawable.background_seleted_day_in_calendar)
+            mTextViewDay.setBackgroundResource(R.drawable.background_seleted_day_in_calendar)
         }
     }
 
