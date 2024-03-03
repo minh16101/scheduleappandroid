@@ -1,55 +1,59 @@
 package com.example.imoney.fragment.base.delegate
 
+import com.example.imoney.common.KeyDelegate
+import com.example.imoney.fragment.base.IView
+import com.example.imoney.fragment.base.viewmodel.BaseViewModel
+
 //factory se goi trong fragment, oncreate cua base factory se duoc goi trong oncreate cua fragment => oncreate cua delegate xz se dc goi trong oncreate cua fragment
-abstract class BaseDelegateFactory {
-    private val listDelegate: List<BaseDelegate> by lazy { createListDelegates() }
-    abstract fun createListDelegates(): List<BaseDelegate>
+abstract class BaseDelegateFactory<V: IView, VM: BaseViewModel> {
+    private val listDelegate: List<Pair<KeyDelegate, BaseDelegate<V, VM>>> by lazy { createListDelegates() }
+    abstract fun createListDelegates(): List<Pair<KeyDelegate, BaseDelegate<V, VM>>>
 
     public fun onCreate() {
         listDelegate.forEach {
-            it.onCreate()
+            it.second.onCreate()
         }
     }
 
     public fun onCreateView() {
         listDelegate.forEach {
-            it.onCreateView()
+            it.second.onCreateView()
         }
     }
 
     public fun onViewCreated() {
         listDelegate.forEach {
-            it.onViewCreated()
+            it.second.onViewCreated()
         }
     }
 
     public fun onStart() {
         listDelegate.forEach {
-            it.onStart()
+            it.second.onStart()
         }
     }
 
     public fun onResume() {
         listDelegate.forEach {
-            it.onResume()
+            it.second.onResume()
         }
     }
 
     public fun onPause() {
         listDelegate.forEach {
-            it.onPause()
+            it.second.onPause()
         }
     }
 
     public fun onStop() {
         listDelegate.forEach {
-            it.onStop()
+            it.second.onStop()
         }
     }
 
     public fun onDestroy() {
         listDelegate.forEach {
-            it.onDestroy()
+            it.second.onDestroy()
         }
     }
 }

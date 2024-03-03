@@ -1,4 +1,4 @@
 package com.example.imoney.fragment.base.viewmodel
 
-class BaseViewModel {
+abstract class BaseViewModel {
 }
