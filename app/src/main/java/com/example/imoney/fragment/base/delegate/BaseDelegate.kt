@@ -4,7 +4,7 @@ import com.example.imoney.fragment.base.BaseFragment
 import com.example.imoney.fragment.base.IView
 import com.example.imoney.fragment.base.viewmodel.BaseViewModel
 
-abstract class BaseDelegate<V: IView, VM: BaseViewModel> {
+abstract class BaseDelegate<V: BaseFragment, VM: BaseViewModel>(val f: V, val vm: VM) {
     public fun onCreate() {
 
     }

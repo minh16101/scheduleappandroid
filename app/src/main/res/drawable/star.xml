@@ -13,18 +13,18 @@
       android:pathData="M2.089,16C3.204,15.121 4.686,14.797 6.089,15.126"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#CDDC39"
+      android:strokeColor="@color/text_main_toolbar_delegate_year"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M2.089,10.5C3.089,10 3.379,10.061 4.089,10"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#CDDC39"
+      android:strokeColor="@color/text_main_toolbar_delegate_year"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M2,5.609L2.208,5.487C4.414,4.195 6.75,3.847 8.953,4.482L9.161,4.542"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#CDDC39"
+      android:strokeColor="@color/text_main_toolbar_delegate_year"
       android:strokeLineCap="round"/>
 </vector>

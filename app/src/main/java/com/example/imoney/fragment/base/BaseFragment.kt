@@ -6,12 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.imoney.fragment.base.delegate.BaseDelegateFactory
 import com.example.imoney.fragment.base.viewmodel.BaseViewModel
-import com.example.imoney.presenter.base.BasePresenter
 
-abstract class BaseFragment<V: IView, VM: BaseViewModel>: Fragment() {
-    open val delegateFactory: BaseDelegateFactory<V, VM> = TODO()
+abstract class BaseFragment : Fragment() {
+    open val mViewModel: BaseViewModel by viewModels()
+    open val delegateFactory: BaseDelegateFactory<*, *> by lazy {
+        BaseDelegateFactory<BaseFragment, BaseViewModel>(this, mViewModel)
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         //database
@@ -26,16 +30,14 @@ abstract class BaseFragment<V: IView, VM: BaseViewModel>: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
+//        super.onCreateView(inflater, container, savedInstanceState)
         val view = inflater.inflate(getLayoutId(), container, false)
-        onBindId(view)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
-    abstract fun onBindId(view: View)
 
     abstract fun getLayoutId(): Int
 }

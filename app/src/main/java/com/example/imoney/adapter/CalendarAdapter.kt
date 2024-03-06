@@ -55,7 +55,7 @@ class CalendarAdapter(mContext: Context?, listDates: List<Date>, mView: ICalenda
     private fun checkCurrentDay(pos: Int) {
         val today = DateUntils.getToday()
         val todayCalendar = Calendar.getInstance()
-        todayCalendar.time = today
+        todayCalendar.time = today.time
         val posCalendar = Calendar.getInstance()
         posCalendar.time = listDates[pos]
         if (todayCalendar.get(Calendar.DAY_OF_MONTH) == posCalendar.get(Calendar.DAY_OF_MONTH)

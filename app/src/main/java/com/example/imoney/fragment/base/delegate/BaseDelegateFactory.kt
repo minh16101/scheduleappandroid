@@ -1,59 +1,77 @@
 package com.example.imoney.fragment.base.delegate
 
 import com.example.imoney.common.KeyDelegate
+import com.example.imoney.fragment.base.BaseFragment
 import com.example.imoney.fragment.base.IView
 import com.example.imoney.fragment.base.viewmodel.BaseViewModel
+import java.util.EnumMap
 
 //factory se goi trong fragment, oncreate cua base factory se duoc goi trong oncreate cua fragment => oncreate cua delegate xz se dc goi trong oncreate cua fragment
-abstract class BaseDelegateFactory<V: IView, VM: BaseViewModel> {
+open class BaseDelegateFactory<V : BaseFragment, VM : BaseViewModel>(
+    val f: V,
+    val vm: VM
+) {
     private val listDelegate: List<Pair<KeyDelegate, BaseDelegate<V, VM>>> by lazy { createListDelegates() }
-    abstract fun createListDelegates(): List<Pair<KeyDelegate, BaseDelegate<V, VM>>>
+    private lateinit var hashDelegate: EnumMap<KeyDelegate, BaseDelegate<V, VM>>
+    open fun createListDelegates(): List<Pair<KeyDelegate, BaseDelegate<V, VM>>> {
+        return emptyList()
+    }
+
+    fun init() {
+        createListDelegates().forEach {
+            hashDelegate[it.first] = it.second
+        }
+    }
+
+    private fun getListDelegate(): MutableCollection<BaseDelegate<V, VM>> {
+        return hashDelegate.values
+    }
 
     public fun onCreate() {
-        listDelegate.forEach {
-            it.second.onCreate()
+        getListDelegate().forEach {
+            it.onCreate()
         }
     }
 
     public fun onCreateView() {
-        listDelegate.forEach {
-            it.second.onCreateView()
+        getListDelegate().forEach {
+            it.onCreate()
         }
     }
 
     public fun onViewCreated() {
-        listDelegate.forEach {
-            it.second.onViewCreated()
+        getListDelegate().forEach {
+            it.onCreate()
         }
     }
 
     public fun onStart() {
-        listDelegate.forEach {
-            it.second.onStart()
+        getListDelegate().forEach {
+            it.onCreate()
         }
     }
 
     public fun onResume() {
-        listDelegate.forEach {
-            it.second.onResume()
+        getListDelegate().forEach {
+            it.onCreate()
         }
     }
 
     public fun onPause() {
-        listDelegate.forEach {
-            it.second.onPause()
+        getListDelegate().forEach {
+            it.onCreate()
         }
     }
 
     public fun onStop() {
-        listDelegate.forEach {
-            it.second.onStop()
+        getListDelegate().forEach {
+            it.onCreate()
         }
     }
 
     public fun onDestroy() {
-        listDelegate.forEach {
-            it.second.onDestroy()
+        getListDelegate().forEach {
+            it.onCreate()
         }
     }
 }

@@ -5,7 +5,7 @@
     <color name="text_common_color">#FFFFFF</color>
     <color name="color_blue_in_calendar">#2196F3</color>
     <color name="calendar_background_color">#0C0C0C</color>
-    <color name="text_main_toolbar_delegate_year">#03A9F4</color>
+    <color name="text_main_toolbar_delegate_year">#4267B2</color>
 
     <!--    calendar-->
 </resources>
